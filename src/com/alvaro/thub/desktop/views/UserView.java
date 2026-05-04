@@ -50,7 +50,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
 
-public class UserView extends View {
+public class UserView extends AbstractView {
     private JTextField dniTF;
     private JTextField nameTF;
     private JTextField lastName1TF;

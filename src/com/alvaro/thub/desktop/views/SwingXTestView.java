@@ -17,7 +17,7 @@ import java.util.List;
 import com.alvaro.thub.service.impl.CountryServiceImpl;
 import com.alvaro.thub.service.impl.TeamServiceImpl;
 
-public class SwingXTestView extends View {
+public class SwingXTestView extends AbstractView {
 
 	private static final long serialVersionUID = 1L;
 

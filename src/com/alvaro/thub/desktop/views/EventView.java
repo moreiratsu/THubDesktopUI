@@ -1,70 +1,59 @@
 package com.alvaro.thub.desktop.views;
 
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.List;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 import org.apache.commons.lang3.StringUtils;
 
-import javax.swing.JOptionPane;
-
-import com.alvaro.thub.model.Country;
-import com.alvaro.thub.model.ProvinceDTO;
-import com.alvaro.thub.model.LocalityDTO;
-import com.alvaro.thub.model.Format;
-import com.alvaro.thub.model.Status;
-import com.alvaro.thub.model.Event;
-import com.alvaro.thub.model.EventDTO;
-import com.alvaro.thub.service.CountryService;
-import com.alvaro.thub.service.ProvinceService;
-import com.alvaro.thub.service.LocalityService;
-import com.alvaro.thub.service.FormatService;
-import com.alvaro.thub.service.StatusService;
-import com.alvaro.thub.service.EventService;
-import com.alvaro.thub.service.UserService;
-import com.alvaro.thub.service.impl.CountryServiceImpl;
-import com.alvaro.thub.service.impl.ProvinceServiceImpl;
-import com.alvaro.thub.service.impl.LocalityServiceImpl;
-import com.alvaro.thub.service.impl.FormatServiceImpl;
-import com.alvaro.thub.service.impl.StatusServiceImpl;
-import com.alvaro.thub.service.impl.EventServiceImpl;
-import com.alvaro.thub.service.impl.UserServiceImpl;
 import com.alvaro.thub.desktop.controller.CancelController;
 import com.alvaro.thub.desktop.controller.Controller;
 import com.alvaro.thub.desktop.controller.CountryCBController;
 import com.alvaro.thub.desktop.controller.EventCreateController;
 import com.alvaro.thub.desktop.controller.ProvinceCBController;
 import com.alvaro.thub.desktop.views.renderer.CountryCBRenderer;
-import com.alvaro.thub.desktop.views.renderer.ProvinceCBRenderer;
-import com.alvaro.thub.desktop.views.renderer.LocalityCBRenderer;
 import com.alvaro.thub.desktop.views.renderer.FormatCBRenderer;
+import com.alvaro.thub.desktop.views.renderer.LocalityCBRenderer;
+import com.alvaro.thub.desktop.views.renderer.ProvinceCBRenderer;
 import com.alvaro.thub.desktop.views.renderer.StatusCBRenderer;
-
-import java.awt.Insets;
-import java.awt.Window;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import java.util.Date;
-import java.util.List;
-
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionEvent;
+import com.alvaro.thub.model.Country;
+import com.alvaro.thub.model.Event;
+import com.alvaro.thub.model.EventDTO;
+import com.alvaro.thub.model.Format;
+import com.alvaro.thub.model.LocalityDTO;
+import com.alvaro.thub.model.ProvinceDTO;
+import com.alvaro.thub.model.Status;
+import com.alvaro.thub.service.CountryService;
+import com.alvaro.thub.service.EventService;
+import com.alvaro.thub.service.FormatService;
+import com.alvaro.thub.service.LocalityService;
+import com.alvaro.thub.service.ProvinceService;
+import com.alvaro.thub.service.StatusService;
+import com.alvaro.thub.service.UserService;
+import com.alvaro.thub.service.impl.CountryServiceImpl;
+import com.alvaro.thub.service.impl.EventServiceImpl;
+import com.alvaro.thub.service.impl.FormatServiceImpl;
+import com.alvaro.thub.service.impl.LocalityServiceImpl;
+import com.alvaro.thub.service.impl.ProvinceServiceImpl;
+import com.alvaro.thub.service.impl.StatusServiceImpl;
+import com.alvaro.thub.service.impl.UserServiceImpl;
 import com.toedter.calendar.JDateChooser;
 
 /**
  * Vista para crear o editar un evento. Contiene campos para nombre, fechas, ubicación, formato y estado.
  */
 
-public class EventView extends View {
+public class EventView extends AbstractView {
 
 	private JTextField nombreTextField;
 

@@ -2,7 +2,7 @@ package com.alvaro.thub.desktop.views;
 
 import javax.swing.JPanel;
 
-public abstract class AbstractView extends JPanel implements View2 {
+public abstract class AbstractView extends JPanel implements View {
 
 	private String name = null;
 	

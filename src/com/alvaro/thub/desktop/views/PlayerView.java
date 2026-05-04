@@ -59,7 +59,7 @@ import javax.swing.ImageIcon;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionEvent;
 
-public class PlayerView extends View {
+public class PlayerView extends AbstractView {
 	private JTextField dniTF;
 	private JTextField nameTF;
 	private JTextField lastName1TF;

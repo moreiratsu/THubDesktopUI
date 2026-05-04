@@ -5,7 +5,7 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class HomeView extends View {
+public class HomeView extends AbstractView {
 
     public HomeView() {
         setName("Inicio");

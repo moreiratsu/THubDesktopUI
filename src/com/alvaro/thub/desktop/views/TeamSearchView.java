@@ -79,7 +79,7 @@ import javax.swing.JTable;
  * Muestra los resultados en una tabla con paginación.
  */
 
-public class TeamSearchView extends JPanel {
+public class TeamSearchView extends AbstractView {
 
 	private TeamService teamService = null;
 	private CountryService countryService;

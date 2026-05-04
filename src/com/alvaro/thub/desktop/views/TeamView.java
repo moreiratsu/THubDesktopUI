@@ -61,7 +61,7 @@ import java.awt.event.ActionEvent;
  * dependiendo de si se le asigna un modelo con ID o no.
  */
 
-public class TeamView extends View {
+public class TeamView extends AbstractView {
 	private JTextField nameTF;
 	private JTextField initialismTF;
 	private JPanel buttonsPanel;
