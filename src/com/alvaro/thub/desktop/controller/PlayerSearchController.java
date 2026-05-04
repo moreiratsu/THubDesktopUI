@@ -20,7 +20,7 @@ import com.alvaro.thub.service.PlayerService;
 import com.alvaro.thub.service.impl.PlayerServiceImpl;
 import com.alvaro.thub.utils.Results;
 
-public class PlayerSearchController extends AbstractAction implements KeyListener, ItemListener, PropertyChangeListener {
+public class PlayerSearchController extends AbstractController {
 
 	private PlayerService playerService = null;
 
@@ -40,35 +40,4 @@ public class PlayerSearchController extends AbstractAction implements KeyListene
 		view.setModel(resultados);
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		doAction();					
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-	}
-	
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {	
-		doAction();			
-	}
-	
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-		doAction();	
-	}
-
-	@Override
-	public void propertyChange(PropertyChangeEvent e) {
-		if (e.getPropertyName().equalsIgnoreCase("date")) {
-			doAction();
-		}		
-	}
-
-
 }

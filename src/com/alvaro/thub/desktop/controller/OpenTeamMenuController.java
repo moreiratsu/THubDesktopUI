@@ -14,7 +14,7 @@ import com.alvaro.thub.desktop.MainWindow;
  * Este controlador se encarga de mostrar un menú desplegable con opciones para buscar o crear equipos cuando el usuario hace clic en el botón correspondiente en la barra de herramientas.
  */
 
-public class OpenTeamMenuController extends AbstractAction{
+public class OpenTeamMenuController extends AbstractController{
 
 	private Component parent = null;
 
@@ -23,7 +23,7 @@ public class OpenTeamMenuController extends AbstractAction{
 	}
 
 	
-	private void doAction() {
+	public void doAction() {
 		// Menú desplegable para Equipos
 		JPopupMenu teamPopup = new JPopupMenu();				
 		JMenuItem buscarEquipoItem = new JMenuItem("Buscar Equipo");

@@ -17,7 +17,7 @@ import com.alvaro.thub.service.impl.TeamServiceImpl;
  * Después de la actualización, muestra un mensaje de éxito o error según corresponda.
  */
 
-public class TeamUpdateController extends Controller {
+public class TeamUpdateController extends AbstractController {
 	
 	private TeamView view = null;
 

@@ -20,7 +20,7 @@ import com.alvaro.thub.service.impl.TeamServiceImpl;
  * llamar al servicio para crear el equipo y manejar la respuesta.
  */
 
-public class TeamCreateController extends Controller {
+public class TeamCreateController extends AbstractController {
 
 	private TeamView view = null;
 	

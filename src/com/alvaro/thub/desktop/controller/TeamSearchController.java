@@ -25,7 +25,7 @@ import com.alvaro.thub.utils.Results;
  * Además, se activa cada vez que el usuario escribe en los campos de búsqueda o cambia alguna opción, para mostrar resultados en tiempo real.
  */
 
-public class TeamSearchController extends AbstractAction implements KeyListener, ItemListener{
+public class TeamSearchController extends AbstractController {
 
 	
 
@@ -45,28 +45,5 @@ public class TeamSearchController extends AbstractAction implements KeyListener,
 		view.setModel(resultados);
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		doAction();					
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-	}
-	
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {	
-		doAction();			
-	}
-	
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-		doAction();	
-	}
-
 
 }

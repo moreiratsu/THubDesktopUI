@@ -7,10 +7,10 @@ import javax.swing.AbstractAction;
 import com.alvaro.thub.desktop.MainWindow;
 import com.alvaro.thub.desktop.views.UserView;
 
-public class OpenUserCreateViewController extends Controller{
+public class OpenUserCreateViewController extends AbstractController{
 	
 	public OpenUserCreateViewController() {	
-		super(null); // Puedes agregar un nombre o un ícono aquí 
+		super(); // Puedes agregar un nombre o un ícono aquí 
 	}
 	
 	@Override

@@ -268,7 +268,7 @@ public class MainWindow {
 	}
 
 	public void remove(View view) {
-		contentTabbedPane.remove(view);
+		contentTabbedPane.remove((Component) view);
 	}
 
 	private void postInitialize() {

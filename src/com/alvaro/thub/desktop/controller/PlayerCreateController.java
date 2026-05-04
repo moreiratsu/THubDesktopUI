@@ -17,7 +17,7 @@ import com.alvaro.thub.service.impl.PlayerServiceImpl;
  * llamar al servicio para crear el jugador y manejar la respuesta.
  */
 
-public class PlayerCreateController extends Controller {
+public class PlayerCreateController extends AbstractController {
 
     private PlayerView view = null;
     

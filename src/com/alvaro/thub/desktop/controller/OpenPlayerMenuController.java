@@ -8,7 +8,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 import com.alvaro.thub.desktop.MainWindow;
 
-public class OpenPlayerMenuController extends AbstractAction{
+public class OpenPlayerMenuController extends AbstractController{
 
 	private Component parent = null;
 
@@ -16,7 +16,7 @@ public class OpenPlayerMenuController extends AbstractAction{
 		this.parent = parent;
 	}
 
-	private void doAction() {
+	public void doAction() {
 		// Menú desplegable para Participantes
 		JPopupMenu playersPopup = new JPopupMenu();
 		JMenuItem buscarParticipanteItem = new JMenuItem("Buscar Participante");

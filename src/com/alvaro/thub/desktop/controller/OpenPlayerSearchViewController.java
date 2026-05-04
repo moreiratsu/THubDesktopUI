@@ -7,13 +7,13 @@ import javax.swing.AbstractAction;
 import com.alvaro.thub.desktop.MainWindow;
 import com.alvaro.thub.desktop.views.PlayerSearchView;
 
-public class OpenPlayerSearchViewController extends AbstractAction{
+public class OpenPlayerSearchViewController extends AbstractController{
 
 	
 	public OpenPlayerSearchViewController() {	
 	}
 	
-	private void doAction() {
+	public void doAction() {
 		PlayerSearchView playerSearchView = new PlayerSearchView();
 		MainWindow.getInstance().addClosableView(playerSearchView.getName(), playerSearchView);
 	}

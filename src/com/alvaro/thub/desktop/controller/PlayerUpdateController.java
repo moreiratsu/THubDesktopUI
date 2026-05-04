@@ -18,7 +18,7 @@ import com.alvaro.thub.service.impl.PlayerServiceImpl;
  * Después de la actualización, muestra un mensaje de éxito o error según corresponda.
  */
 
-public class PlayerUpdateController extends Controller {
+public class PlayerUpdateController extends AbstractController {
     
     private PlayerView view = null;
     private PlayerService playerService = null;

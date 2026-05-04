@@ -84,7 +84,7 @@ import com.toedter.calendar.JDateChooser;
  * Al hacer doble clic en un evento se abre su vista detallada.
  */
 
-public class EventSearchView extends JPanel {
+public class EventSearchView extends AbstractView {
 
 	private EventService eventService = null;
 	private CountryService countryService;

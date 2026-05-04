@@ -8,7 +8,7 @@ import com.alvaro.thub.desktop.MainWindow;
 import com.alvaro.thub.desktop.views.PlayerView;
 import com.alvaro.thub.desktop.views.View;
 
-public class OpenPlayerCreateFromSearchController extends Controller {
+public class OpenPlayerCreateFromSearchController extends AbstractController {
     
     
     public OpenPlayerCreateFromSearchController() {

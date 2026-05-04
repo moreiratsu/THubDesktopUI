@@ -13,7 +13,7 @@ import com.alvaro.thub.desktop.views.PlayerView;
  * para manejar la acción de guardar los cambios realizados.
  */
 
-public class PlayerSetEditableController extends Controller {
+public class PlayerSetEditableController extends AbstractController {
 
     private PlayerView view = null;
 

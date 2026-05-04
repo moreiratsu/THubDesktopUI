@@ -25,7 +25,7 @@ import com.alvaro.thub.service.impl.EventServiceImpl;
  * llamar al servicio para crear el evento y manejar la respuesta.
  */
 
-public class EventCreateController extends Controller{
+public class EventCreateController extends AbstractController{
 
 	private EventView view = null;
 

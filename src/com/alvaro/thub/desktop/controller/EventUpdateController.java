@@ -10,7 +10,7 @@ import com.alvaro.thub.model.Event;
 import com.alvaro.thub.service.EventService;
 import com.alvaro.thub.service.impl.EventServiceImpl;
 
-public class EventUpdateController extends Controller {
+public class EventUpdateController extends AbstractController {
 
     private EventView view = null;
     private EventService eventService = null;

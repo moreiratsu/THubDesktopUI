@@ -12,7 +12,7 @@ import com.alvaro.thub.desktop.MainWindow;
 import com.alvaro.thub.desktop.views.HomeView;
 import com.alvaro.thub.desktop.views.ParticipantsByAgeChartView;
 
-public class OpenHomeViewController extends AbstractAction{
+public class OpenHomeViewController extends AbstractController{
 
 
 	public OpenHomeViewController() {

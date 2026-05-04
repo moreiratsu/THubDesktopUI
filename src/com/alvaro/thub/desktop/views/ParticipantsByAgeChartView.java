@@ -22,7 +22,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import com.alvaro.thub.service.StatisticsService;
 import com.alvaro.thub.service.impl.StatisticsServiceImpl;
 
-public class ParticipantsByAgeChartView extends JPanel {
+public class ParticipantsByAgeChartView extends AbstractView {
 
     private StatisticsService statisticsService = null;
     

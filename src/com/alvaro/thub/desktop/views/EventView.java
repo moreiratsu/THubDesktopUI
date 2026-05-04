@@ -33,6 +33,7 @@ import com.alvaro.thub.service.impl.FormatServiceImpl;
 import com.alvaro.thub.service.impl.StatusServiceImpl;
 import com.alvaro.thub.service.impl.EventServiceImpl;
 import com.alvaro.thub.service.impl.UserServiceImpl;
+import com.alvaro.thub.desktop.controller.AbstractController;
 import com.alvaro.thub.desktop.controller.CancelController;
 import com.alvaro.thub.desktop.controller.Controller;
 import com.alvaro.thub.desktop.controller.CountryCBController;
@@ -64,7 +65,7 @@ import com.toedter.calendar.JDateChooser;
  * Vista para crear o editar un evento. Contiene campos para nombre, fechas, ubicación, formato y estado.
  */
 
-public class EventView extends View {
+public class EventView extends AbstractView {
 
 	private JTextField nombreTextField;
 
@@ -511,11 +512,11 @@ public class EventView extends View {
 		// TODO falta usuario, pero no se si se va a poder editar
 	}
 
-	public void setAgreeController(Controller controller) {
+	public void setAgreeController(AbstractController controller) {
 		agreeButton.setAction(controller);
 	}
 
-	public void setCancelController(Controller controller) {
+	public void setCancelController(AbstractController controller) {
 		cancelButton.setAction(controller);
 	}
 }

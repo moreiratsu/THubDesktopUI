@@ -17,7 +17,7 @@ import com.alvaro.thub.desktop.views.UserSearchView;
  *  este controlador se encarga de mostrar ese menú cuando se hace clic en el botón.
  */
 
-public class OpenUserMenuController extends AbstractAction {
+public class OpenUserMenuController extends AbstractController {
 
 	private Component parent = null;
 	
@@ -28,7 +28,7 @@ public class OpenUserMenuController extends AbstractAction {
 		this.parent = parent;		
 	}	
 
-	private void doAction() {
+	public void doAction() {
 		// Menú desplegable para Usuario
 		JPopupMenu userPopup = new JPopupMenu();
 		

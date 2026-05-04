@@ -13,13 +13,14 @@ import com.alvaro.thub.desktop.views.TeamSearchView;
  * Este controlador se encarga de crear una nueva instancia de TeamSearchView y mostrarla en la ventana principal cuando el usuario selecciona la opción de búsqueda de equipos.
  */
 
-public class OpenTeamSearchViewController extends AbstractAction{
+public class OpenTeamSearchViewController extends AbstractController{
 
 	
 	public OpenTeamSearchViewController() {
 	}
 	
-	private void doAction() {
+	@Override
+	public void doAction() {
 		TeamSearchView teamSearchView = new TeamSearchView();
 		MainWindow.getInstance().addClosableView(teamSearchView.getName(), teamSearchView);
 	}

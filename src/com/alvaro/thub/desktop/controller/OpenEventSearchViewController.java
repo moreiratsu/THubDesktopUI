@@ -13,13 +13,13 @@ import com.alvaro.thub.desktop.views.EventSearchView;
  * Este controlador se encarga de crear una nueva instancia de EventSearchView y mostrarla en la ventana principal cuando el usuario selecciona la opción de búsqueda de eventos.
  */
 
-public class OpenEventSearchViewController extends AbstractAction{
+public class OpenEventSearchViewController extends AbstractController{
 
 	
 	public OpenEventSearchViewController() {	
 	}
 
-	private void doAction() {
+	public void doAction() {
 		EventSearchView eventSearchView = new EventSearchView();
 		MainWindow.getInstance().addClosableView(eventSearchView.getName(), eventSearchView);
 	}

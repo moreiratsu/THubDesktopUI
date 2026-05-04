@@ -14,7 +14,7 @@ import com.alvaro.thub.desktop.views.TeamView;
  * los cambios realizados.
  */
 
-public class TeamSetEditableController extends Controller {
+public class TeamSetEditableController extends AbstractController {
 
 	private TeamView view = null;
 

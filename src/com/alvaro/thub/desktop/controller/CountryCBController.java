@@ -16,7 +16,7 @@ import com.alvaro.thub.service.impl.ProvinceServiceImpl;
  * Actualiza el JComboBox de provincias en función del país seleccionado.
  */
 
-public class CountryCBController extends Controller {
+public class CountryCBController extends AbstractController {
 
 	// Las variables de provincias y localidades se pasan para poder actualizar sus
 	// modelos cuando se selecciona un país.
@@ -29,12 +29,13 @@ public class CountryCBController extends Controller {
 	// Constructor que recibe los JComboBox de provincias y localidades, así como el
 	// servicio de provincias para usarlos despues.
 	public CountryCBController(JComboBox countryCB, JComboBox provinceCB, String placeholderText) {
-		super(null); // No vinculado a ninguna vista
+		super(); // No vinculado a ninguna vista
 		this.countryCB = countryCB;
 		this.provinceCB = provinceCB;
 		this.placeholderText = placeholderText;
 	}
 
+	@Override  
 	public void doAction() {
 		// Obtener el país
 		Country selectedCountry = (Country) countryCB.getSelectedItem();
@@ -56,7 +57,6 @@ public class CountryCBController extends Controller {
 			provinceCB.setModel(model);
 		} else {
 			provinceCB.setModel(new DefaultComboBoxModel<>());
-//            localityCB.setModel(new DefaultComboBoxModel<>());
 		}
 	}
 }

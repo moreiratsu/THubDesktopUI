@@ -12,14 +12,14 @@ import com.alvaro.thub.model.LocalityDTO;
 import com.alvaro.thub.service.LocalityService;
 import com.alvaro.thub.service.impl.LocalityServiceImpl;
 
-public class ProvinceCBController extends Controller {
+public class ProvinceCBController extends AbstractController {
     
 	private JComboBox provinceCB;
 	private JComboBox localityCB;
     private String placeholderText;
     
     public ProvinceCBController(JComboBox provinceCB, JComboBox localityCB, String placeholderText) {
-    	super(null);
+    	super();
 		this.provinceCB = provinceCB;
 		this.localityCB = localityCB;
     	this.placeholderText = placeholderText;

@@ -10,13 +10,13 @@ import javax.swing.JPopupMenu;
 import com.alvaro.thub.desktop.MainWindow;
 import com.alvaro.thub.desktop.views.ParticipantsByAgeChartView;
 
-public class OpenPlayersByAgeViewController extends AbstractAction{
+public class OpenPlayersByAgeViewController extends AbstractController{
 
 
 	public OpenPlayersByAgeViewController( ) {
 	}
 
-	private void doAction() {
+	public void doAction() {
 		ParticipantsByAgeChartView chartView = new ParticipantsByAgeChartView();
 		MainWindow.getInstance().addClosableView(chartView.getName(), chartView);	
 	}

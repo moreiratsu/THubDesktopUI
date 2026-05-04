@@ -11,7 +11,7 @@ import javax.swing.SwingConstants;
 import com.alvaro.thub.desktop.MainWindow;
 import com.alvaro.thub.desktop.views.ParticipantsByAgeChartView;
 
-public class OpenStatsMenuController extends AbstractAction{
+public class OpenStatsMenuController extends AbstractController{
 
 	private Component parent = null;
 
@@ -19,7 +19,7 @@ public class OpenStatsMenuController extends AbstractAction{
 		this.parent = parent;
 	}
 	
-	private void doAction() {
+	public void doAction() {
 		// Menú desplegable para Estadísticas
 				JPopupMenu statisticsPopup = new JPopupMenu();
 				JMenuItem participantesPorEdadItem = new JMenuItem("Participantes por Edad");

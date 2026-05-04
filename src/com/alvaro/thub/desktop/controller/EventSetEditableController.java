@@ -8,7 +8,7 @@ import com.alvaro.thub.desktop.views.EventView;
 
 
 
-public class EventSetEditableController extends Controller {
+public class EventSetEditableController extends AbstractController {
 
 	private EventView view = null;
 	

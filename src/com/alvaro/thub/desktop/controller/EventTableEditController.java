@@ -7,7 +7,7 @@ import com.alvaro.thub.desktop.MainWindow;
 import com.alvaro.thub.desktop.views.EventView;
 import com.alvaro.thub.model.EventDTO;
 
-public class EventTableEditController extends Controller {
+public class EventTableEditController extends AbstractController {
     
     private JTable table;
     private int row;

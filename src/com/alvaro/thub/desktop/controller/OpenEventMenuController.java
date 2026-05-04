@@ -15,7 +15,7 @@ import com.alvaro.thub.desktop.MainWindow;
  * Este controlador se encarga de mostrar un menú desplegable con opciones para buscar o crear eventos cuando el usuario hace clic en el botón correspondiente en la barra de herramientas.
  */
 
-public class OpenEventMenuController extends AbstractAction {
+public class OpenEventMenuController extends AbstractController {
 
 	// aqui declaro el parent, para poder usarlo
 	private Component parent = null;
@@ -25,7 +25,8 @@ public class OpenEventMenuController extends AbstractAction {
 		this.parent = parent;		
 	}
 
-	private void doAction() {
+	@Override
+	public void doAction() {
 		// Aquí ponemos el codigo de main window que hace la accion de abrir el popup menu de evento, con las opciones de buscar y crear eventos
 		JPopupMenu eventPopup = new JPopupMenu();
 

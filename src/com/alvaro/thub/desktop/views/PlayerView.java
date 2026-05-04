@@ -31,6 +31,7 @@ import com.alvaro.thub.service.impl.ProvinceServiceImpl;
 import com.alvaro.thub.service.impl.LocalityServiceImpl;
 import com.alvaro.thub.service.impl.GenderServiceImpl;
 import com.alvaro.thub.service.impl.TeamServiceImpl;
+import com.alvaro.thub.desktop.controller.AbstractController;
 import com.alvaro.thub.desktop.controller.CancelController;
 import com.alvaro.thub.desktop.controller.Controller;
 import com.alvaro.thub.desktop.controller.CountryCBController;
@@ -59,7 +60,7 @@ import javax.swing.ImageIcon;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionEvent;
 
-public class PlayerView extends View {
+public class PlayerView extends AbstractView {
 	private JTextField dniTF;
 	private JTextField nameTF;
 	private JTextField lastName1TF;
@@ -493,11 +494,11 @@ public class PlayerView extends View {
 		teamCB.setEnabled(editable);
 	}
 
-	public void setAgreeController(Controller controller) {
+	public void setAgreeController(AbstractController controller) {
 		agreeButton.setAction(controller);
 	}
 
-	public void setCancelController(Controller controller) {
+	public void setCancelController(AbstractController controller) {
 		cancelButton.setAction(controller);
 	}
 }

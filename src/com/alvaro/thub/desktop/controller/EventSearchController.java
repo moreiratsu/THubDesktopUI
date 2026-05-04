@@ -28,7 +28,7 @@ import com.alvaro.thub.utils.Results;
  * Además, se activa cada vez que el usuario escribe en los campos de búsqueda o cambia alguna opción, para mostrar resultados en tiempo real.
  */
 
-public class EventSearchController extends AbstractAction implements KeyListener, ItemListener, PropertyChangeListener  {
+public class EventSearchController extends AbstractController {
 
 	private EventSearchView view = null;
 
@@ -46,38 +46,4 @@ public class EventSearchController extends AbstractAction implements KeyListener
 		view.setModel(resultados);
 	}
 
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		doAction();	
-	}
-
-	@Override
-	public void keyPressed(KeyEvent arg0) {	
-	}
-	
-	// buscar cuando escriba por lo menos 3 caracteres en un textField
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		doAction();			
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-	}
-	
-	// buscar cuando seleccione una opcion en un combobox
-	@Override
-	public void itemStateChanged(ItemEvent arg0) {
-		doAction();
-	}
-	
-	// buscar cuando se cambia un jdatechooser
-	@Override
-	public void propertyChange(PropertyChangeEvent e) {
-		if (e.getPropertyName().equalsIgnoreCase("date")) {
-			doAction();
-		}
-		
-	}
 }

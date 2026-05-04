@@ -28,6 +28,7 @@ import com.alvaro.thub.service.impl.CountryServiceImpl;
 import com.alvaro.thub.service.impl.ProvinceServiceImpl;
 import com.alvaro.thub.service.impl.LocalityServiceImpl;
 import com.alvaro.thub.service.impl.SportServiceImpl;
+import com.alvaro.thub.desktop.controller.AbstractController;
 import com.alvaro.thub.desktop.controller.CancelController;
 import com.alvaro.thub.desktop.controller.Controller;
 import com.alvaro.thub.desktop.controller.CountryCBController;
@@ -61,7 +62,7 @@ import java.awt.event.ActionEvent;
  * dependiendo de si se le asigna un modelo con ID o no.
  */
 
-public class TeamView extends View {
+public class TeamView extends AbstractView {
 	private JTextField nameTF;
 	private JTextField initialismTF;
 	private JPanel buttonsPanel;
@@ -406,11 +407,11 @@ public class TeamView extends View {
 		localityCB.setEnabled(editable);
 	}
 
-	public void setAgreeController(Controller controller) {
+	public void setAgreeController(AbstractController controller) {
 		agreeButton.setAction(controller);
 	}
 
-	public void setCancelController(Controller controller) {
+	public void setCancelController(AbstractController controller) {
 		cancelButton.setAction(controller);
 	}
 

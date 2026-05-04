@@ -82,7 +82,7 @@ import javax.swing.JTable;
  * Permite filtrar por múltiples criterios y muestra los resultados en una tabla.
  */
 
-public class PlayerSearchView extends JPanel {
+public class PlayerSearchView extends AbstractView {
 
 	private PlayerService playerService = null;
 	private CountryService countryService;

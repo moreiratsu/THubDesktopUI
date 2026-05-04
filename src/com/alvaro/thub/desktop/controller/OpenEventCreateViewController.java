@@ -11,20 +11,16 @@ import com.alvaro.thub.desktop.views.EventView;
  * Controlador para ABRIR LA VISTA DE CREACION DE EVENTOS.
  */
 
-public class OpenEventCreateViewController extends AbstractAction{
+public class OpenEventCreateViewController extends AbstractController{
 	
 	public OpenEventCreateViewController() {	
 	}
 
-	private void doAction() {
+	public void doAction() {
 		EventView eventCreateView = new EventView();
 		eventCreateView.setEditable(true);
 		MainWindow.getInstance().addClosableView(eventCreateView.getName(), eventCreateView);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		doAction();		
-	}
 
 }

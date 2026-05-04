@@ -9,7 +9,7 @@ import com.alvaro.thub.model.EventDTO;
 import com.alvaro.thub.service.EventService;
 import com.alvaro.thub.service.impl.EventServiceImpl;
 
-public class EventTableDeleteController extends Controller {
+public class EventTableDeleteController extends AbstractController {
     
     private JTable table;
     private EventDTO evento;
