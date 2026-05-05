@@ -51,7 +51,7 @@ import com.alvaro.thub.desktop.views.UserSearchView;
 
 /**
  * Ventana principal de la aplicación.
- * Implementada como Singleton.
+ * Implementada con el patrón Singleton.
  */
 public class MainWindow {
 
