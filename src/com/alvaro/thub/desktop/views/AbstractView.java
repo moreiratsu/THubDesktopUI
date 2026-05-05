@@ -2,6 +2,9 @@ package com.alvaro.thub.desktop.views;
 
 import javax.swing.JPanel;
 
+/**
+ * Implementación común de base de las vistas.
+ */
 public abstract class AbstractView extends JPanel implements View {
 
 	private String name = null;
