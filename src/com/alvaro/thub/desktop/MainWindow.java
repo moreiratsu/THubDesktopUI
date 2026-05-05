@@ -49,6 +49,10 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.alvaro.thub.desktop.views.UserSearchView;
 
+/**
+ * Ventana principal de la aplicación.
+ * Implementada como Singleton.
+ */
 public class MainWindow {
 
 	// Instancia Única de MainWindow para controladores
