@@ -22,9 +22,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 import com.alvaro.thub.dao.criteria.UserCriteria;
+import com.alvaro.thub.desktop.controller.CountryCBController;
+import com.alvaro.thub.desktop.controller.EventTableMouseController;
+import com.alvaro.thub.desktop.controller.ProvinceCBController;
 import com.alvaro.thub.desktop.controller.UserSearchController;
+import com.alvaro.thub.desktop.controller.UserTableMouseController;
 import com.alvaro.thub.desktop.utils.ConversionUtils;
+import com.alvaro.thub.desktop.utils.CountryToStringConverter;
+import com.alvaro.thub.desktop.utils.LocalityToStringConverter;
+import com.alvaro.thub.desktop.utils.ProvinceToStringConverter;
+import com.alvaro.thub.desktop.views.renderer.ButtonRenderer;
 import com.alvaro.thub.desktop.views.renderer.CountryCBRenderer;
 import com.alvaro.thub.desktop.views.renderer.DateTableCellRenderer;
 import com.alvaro.thub.desktop.views.renderer.GenderCBRenderer;
@@ -32,6 +42,8 @@ import com.alvaro.thub.desktop.views.renderer.LocalityCBRenderer;
 import com.alvaro.thub.desktop.views.renderer.ProvinceCBRenderer;
 import com.alvaro.thub.desktop.views.renderer.RolCBRenderer;
 import com.alvaro.thub.desktop.views.renderer.UserTableRenderer;
+import com.alvaro.thub.desktop.views.tableModel.EventButtonEditor;
+import com.alvaro.thub.desktop.views.tableModel.UserButtonEditor;
 import com.alvaro.thub.desktop.views.tableModel.UserTableModel;
 import com.alvaro.thub.model.Country;
 import com.alvaro.thub.model.Gender;
@@ -53,6 +65,7 @@ import com.alvaro.thub.service.impl.RolServiceImpl;
 import com.alvaro.thub.service.impl.UserServiceImpl;
 import com.alvaro.thub.utils.Results;
 import com.toedter.calendar.JDateChooser;
+
 
 public class UserSearchView extends JPanel {
 
@@ -94,6 +107,7 @@ public class UserSearchView extends JPanel {
 		setName("Búsqueda de usuarios");
 		setLayout(new BorderLayout(0, 0));
 
+		// Panel de criterios de búsqueda
 		JPanel criteriosPanel = new JPanel();
 		add(criteriosPanel, BorderLayout.NORTH);
 		GridBagLayout gbl_criteriosPanel = new GridBagLayout();
@@ -103,7 +117,7 @@ public class UserSearchView extends JPanel {
 		gbl_criteriosPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		criteriosPanel.setLayout(gbl_criteriosPanel);
 
-		// Fila 0: Código y Fecha nacimiento (desde)
+		// Código 
 		JLabel idLabel = new JLabel("Código:");
 		GridBagConstraints gbc_idLabel = new GridBagConstraints();
 		gbc_idLabel.anchor = GridBagConstraints.EAST;
@@ -121,6 +135,7 @@ public class UserSearchView extends JPanel {
 		criteriosPanel.add(idTF, gbc_idTF);
 		idTF.setColumns(10);
 
+		// Fecha nacimiento (desde)
 		JLabel bornDateFromLabel = new JLabel("Fecha nacimiento (desde):");
 		GridBagConstraints gbc_bornDateFromLabel = new GridBagConstraints();
 		gbc_bornDateFromLabel.insets = new Insets(0, 0, 5, 5);
@@ -136,7 +151,7 @@ public class UserSearchView extends JPanel {
 		gbc_bornDateFromDC.gridy = 0;
 		criteriosPanel.add(bornDateFromDC, gbc_bornDateFromDC);
 
-		// Fila 1: DNI y Fecha nacimiento (hasta)
+		// DNI
 		JLabel dniLabel = new JLabel("DNI:");
 		GridBagConstraints gbc_dniLabel = new GridBagConstraints();
 		gbc_dniLabel.anchor = GridBagConstraints.EAST;
@@ -154,6 +169,7 @@ public class UserSearchView extends JPanel {
 		criteriosPanel.add(dniTF, gbc_dniTF);
 		dniTF.setColumns(10);
 
+		// Fecha nacimiento (hasta)
 		JLabel bornDateToLabel = new JLabel("Fecha nacimiento (hasta):");
 		GridBagConstraints gbc_bornDateToLabel = new GridBagConstraints();
 		gbc_bornDateToLabel.insets = new Insets(0, 0, 5, 5);
@@ -169,7 +185,7 @@ public class UserSearchView extends JPanel {
 		gbc_bornDateToDC.gridy = 1;
 		criteriosPanel.add(bornDateToDC, gbc_bornDateToDC);
 
-		// Fila 2: Nombre y País
+		// Nombre
 		JLabel nameLabel = new JLabel("Nombre:");
 		GridBagConstraints gbc_nameLabel = new GridBagConstraints();
 		gbc_nameLabel.anchor = GridBagConstraints.EAST;
@@ -187,6 +203,7 @@ public class UserSearchView extends JPanel {
 		criteriosPanel.add(nameTF, gbc_nameTF);
 		nameTF.setColumns(10);
 
+		// País
 		JLabel countryLabel = new JLabel("País:");
 		GridBagConstraints gbc_countryLabel = new GridBagConstraints();
 		gbc_countryLabel.anchor = GridBagConstraints.EAST;
@@ -195,35 +212,10 @@ public class UserSearchView extends JPanel {
 		gbc_countryLabel.gridy = 2;
 		criteriosPanel.add(countryLabel, gbc_countryLabel);
 
+		provinceCB = new JComboBox();
+		localityCB = new JComboBox();
 		countryCB = new JComboBox();
-		// ItemListener para cargar provincias cuando se selecciona un país
-		countryCB.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-					Country selectedCountry = (Country) countryCB.getSelectedItem();
-					if (selectedCountry != null && selectedCountry.getId() != null) {
-						// Cargar provincias del país seleccionado
-						List<ProvinceDTO> provincias = provinceService.findByCountry(selectedCountry.getId());
-						DefaultComboBoxModel<ProvinceDTO> provinciaModel = new DefaultComboBoxModel<>();
 
-						ProvinceDTO placeholderProvincia = new ProvinceDTO();
-						placeholderProvincia.setId(null);
-						placeholderProvincia.setName("Todas las provincias");
-						provinciaModel.addElement(placeholderProvincia);
-
-						if (provincias != null) {
-							for (ProvinceDTO provincia : provincias) {
-								provinciaModel.addElement(provincia);
-							}
-						}
-						provinceCB.setModel(provinciaModel);
-					} else {
-						provinceCB.setModel(new DefaultComboBoxModel<>());
-						localityCB.setModel(new DefaultComboBoxModel<>());
-					}
-				}
-			}
-		});
 		GridBagConstraints gbc_countryCB = new GridBagConstraints();
 		gbc_countryCB.insets = new Insets(0, 0, 5, 5);
 		gbc_countryCB.fill = GridBagConstraints.HORIZONTAL;
@@ -231,7 +223,9 @@ public class UserSearchView extends JPanel {
 		gbc_countryCB.gridy = 2;
 		criteriosPanel.add(countryCB, gbc_countryCB);
 
-		// Fila 3: Primer apellido y Provincia
+		countryCB.addActionListener(new CountryCBController(countryCB, provinceCB, "Todas las provincias"));
+
+		// Primer apellido
 		JLabel lastName1Label = new JLabel("Primer apellido:");
 		GridBagConstraints gbc_lastName1Label = new GridBagConstraints();
 		gbc_lastName1Label.anchor = GridBagConstraints.EAST;
@@ -249,6 +243,7 @@ public class UserSearchView extends JPanel {
 		criteriosPanel.add(lastName1TF, gbc_lastName1TF);
 		lastName1TF.setColumns(10);
 
+		// Provincia
 		JLabel provinceLabel = new JLabel("Provincia:");
 		GridBagConstraints gbc_provinceLabel = new GridBagConstraints();
 		gbc_provinceLabel.anchor = GridBagConstraints.EAST;
@@ -257,34 +252,8 @@ public class UserSearchView extends JPanel {
 		gbc_provinceLabel.gridy = 3;
 		criteriosPanel.add(provinceLabel, gbc_provinceLabel);
 
-		provinceCB = new JComboBox();
-		// ItemListener para cargar localidades cuando se selecciona una provincia
-		provinceCB.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if (e.getStateChange() == ItemEvent.SELECTED) {
-					ProvinceDTO selectedProvince = (ProvinceDTO) provinceCB.getSelectedItem();
-					if (selectedProvince != null && selectedProvince.getId() != null) {
-						// Cargar localidades de la provincia seleccionada
-						List<LocalityDTO> localidades = localityService.findByProvinceId(selectedProvince.getId());
-						DefaultComboBoxModel<LocalityDTO> localidadModel = new DefaultComboBoxModel<>();
+		provinceCB.addActionListener(new ProvinceCBController(provinceCB, localityCB, "Todas las localidades"));
 
-						LocalityDTO placeholderLocalidad = new LocalityDTO();
-						placeholderLocalidad.setId(null);
-						placeholderLocalidad.setName("Todas las localidades");
-						localidadModel.addElement(placeholderLocalidad);
-
-						if (localidades != null) {
-							for (LocalityDTO localidad : localidades) {
-								localidadModel.addElement(localidad);
-							}
-						}
-						localityCB.setModel(localidadModel);
-					} else {
-						localityCB.setModel(new DefaultComboBoxModel<>());
-					}
-				}
-			}
-		});
 		GridBagConstraints gbc_provinceCB = new GridBagConstraints();
 		gbc_provinceCB.insets = new Insets(0, 0, 5, 5);
 		gbc_provinceCB.fill = GridBagConstraints.HORIZONTAL;
@@ -292,7 +261,7 @@ public class UserSearchView extends JPanel {
 		gbc_provinceCB.gridy = 3;
 		criteriosPanel.add(provinceCB, gbc_provinceCB);
 
-		// Fila 4: Segundo apellido y Localidad
+		// Segundo apellido 
 		JLabel lastName2Label = new JLabel("Segundo apellido:");
 		GridBagConstraints gbc_lastName2Label = new GridBagConstraints();
 		gbc_lastName2Label.anchor = GridBagConstraints.EAST;
@@ -310,6 +279,7 @@ public class UserSearchView extends JPanel {
 		criteriosPanel.add(lastName2TF, gbc_lastName2TF);
 		lastName2TF.setColumns(10);
 
+		// Localidad
 		JLabel localityLabel = new JLabel("Localidad:");
 		GridBagConstraints gbc_localityLabel = new GridBagConstraints();
 		gbc_localityLabel.anchor = GridBagConstraints.EAST;
@@ -318,7 +288,6 @@ public class UserSearchView extends JPanel {
 		gbc_localityLabel.gridy = 4;
 		criteriosPanel.add(localityLabel, gbc_localityLabel);
 
-		localityCB = new JComboBox();
 		GridBagConstraints gbc_localityCB = new GridBagConstraints();
 		gbc_localityCB.insets = new Insets(0, 0, 5, 5);
 		gbc_localityCB.fill = GridBagConstraints.HORIZONTAL;
@@ -326,7 +295,7 @@ public class UserSearchView extends JPanel {
 		gbc_localityCB.gridy = 4;
 		criteriosPanel.add(localityCB, gbc_localityCB);
 
-		// Fila 5: Email y Género
+		// Email
 		JLabel emailLabel = new JLabel("Email:");
 		GridBagConstraints gbc_emailLabel = new GridBagConstraints();
 		gbc_emailLabel.anchor = GridBagConstraints.EAST;
@@ -344,6 +313,7 @@ public class UserSearchView extends JPanel {
 		criteriosPanel.add(emailTF, gbc_emailTF);
 		emailTF.setColumns(10);
 
+		// Género
 		JLabel genderLabel = new JLabel("Género:");
 		GridBagConstraints gbc_genderLabel = new GridBagConstraints();
 		gbc_genderLabel.anchor = GridBagConstraints.EAST;
@@ -360,7 +330,7 @@ public class UserSearchView extends JPanel {
 		gbc_genderCB.gridy = 5;
 		criteriosPanel.add(genderCB, gbc_genderCB);
 
-		// Fila 6: Rol
+		// Rol
 		JLabel rolLabel = new JLabel("Rol:");
 		GridBagConstraints gbc_rolLabel = new GridBagConstraints();
 		gbc_rolLabel.anchor = GridBagConstraints.EAST;
@@ -377,7 +347,7 @@ public class UserSearchView extends JPanel {
 		gbc_rolCB.gridy = 6;
 		criteriosPanel.add(rolCB, gbc_rolCB);
 
-		// Fila 7: Botón de búsqueda
+		// Botón de búsqueda
 		searchButton = new JButton("Buscar");
 		searchButton.setIcon(new ImageIcon(UserSearchView.class.getResource("/nuvola/16x16/1339_kmag_kmag.png")));
 		GridBagConstraints gbc_searchButton = new GridBagConstraints();
@@ -387,6 +357,7 @@ public class UserSearchView extends JPanel {
 		gbc_searchButton.gridy = 7;
 		criteriosPanel.add(searchButton, gbc_searchButton);
 
+		// Resultados
 		JPanel resultsPanel = new JPanel();
 		add(resultsPanel, BorderLayout.CENTER);
 		resultsPanel.setLayout(new BorderLayout(0, 0));
@@ -395,6 +366,7 @@ public class UserSearchView extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(resultsTable);
 		resultsPanel.add(scrollPane, BorderLayout.CENTER);
 
+		// Panel de paginación
 		JPanel paginationPanel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) paginationPanel.getLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
@@ -453,11 +425,24 @@ public class UserSearchView extends JPanel {
 		}
 		rolCB.setModel(rolModel);
 
-		// Inicializar combobox dependientes vacíos
-		provinceCB.setModel(new DefaultComboBoxModel<>());
-		localityCB.setModel(new DefaultComboBoxModel<>());
+		DefaultComboBoxModel<ProvinceDTO> provinceModel = new DefaultComboBoxModel<>();
+		ProvinceDTO placeholderProv = new ProvinceDTO();
+		placeholderProv.setId(null);
+		placeholderProv.setName("Todas las provincias");
+		provinceModel.addElement(placeholderProv);
+		provinceCB.setModel(provinceModel);
 
-		// setModel(new ArrayList<UserDTO>());
+		DefaultComboBoxModel<LocalityDTO> localityModel = new DefaultComboBoxModel<>();
+		LocalityDTO placeholderLoc = new LocalityDTO();
+		placeholderLoc.setId(null);
+		placeholderLoc.setName("Todas las localidades");
+		localityModel.addElement(placeholderLoc);
+		localityCB.setModel(localityModel);
+
+		// Configurar autocompletado
+		AutoCompleteDecorator.decorate(countryCB, new CountryToStringConverter());
+		AutoCompleteDecorator.decorate(provinceCB, new ProvinceToStringConverter());
+		AutoCompleteDecorator.decorate(localityCB, new LocalityToStringConverter());
 
 		// Enganchamos controladores
 		UserSearchController userSearchAction = new UserSearchController(this);
@@ -475,7 +460,11 @@ public class UserSearchView extends JPanel {
 		rolCB.setAction(userSearchAction);
 		bornDateFromDC.addPropertyChangeListener(userSearchAction);
 		bornDateToDC.addPropertyChangeListener(userSearchAction);
-		
+		// controlador para manejar eventos de mouse en la tabla (doble clic para abrir vista detallada, hover para resaltar fila)
+		UserTableMouseController mouseController = new UserTableMouseController();
+		resultsTable.addMouseListener(mouseController);
+		resultsTable.addMouseMotionListener(mouseController);		
+
 	}
 
 	private void initServices() {
@@ -537,7 +526,14 @@ public class UserSearchView extends JPanel {
 	public void updateView() {
 		UserTableModel tableModel = new UserTableModel(model.getPage());
 		resultsTable.setModel(tableModel);
-		resultsTable.setDefaultRenderer(Object.class, new UserTableRenderer());
+
+		UserTableRenderer renderer = new UserTableRenderer();
+		resultsTable.setDefaultRenderer(Object.class, renderer);
+
+		// Luego SOBRESCRIBIR la columna 10 con su propio renderer y editor
+		resultsTable.getColumnModel().getColumn(10).setCellRenderer(new ButtonRenderer());
+		resultsTable.getColumnModel().getColumn(10).setCellEditor(new UserButtonEditor(resultsTable));
+
 		totalResultadosLabel.setText(model.getTotal() + " resultados encontrados.");
 	}
 }

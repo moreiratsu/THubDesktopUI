@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTable;
 
 import com.alvaro.thub.desktop.MainWindow;
-import com.alvaro.thub.desktop.views.TeamView;
 import com.alvaro.thub.desktop.views.renderer.ButtonRenderer;
 import com.alvaro.thub.desktop.views.renderer.TeamTableRenderer;
 import com.alvaro.thub.model.TeamDTO;

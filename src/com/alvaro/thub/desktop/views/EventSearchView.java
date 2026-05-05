@@ -434,8 +434,6 @@ public class EventSearchView extends AbstractView {
 		AutoCompleteDecorator.decorate(provinceCB, new ProvinceToStringConverter());
 		AutoCompleteDecorator.decorate(localityCB, new LocalityToStringConverter());
 
-		// setModel ( new ArrayList<EventDTO>());
-
 		// el controlador lo ponemos aqui, en el postinitialize por si en algun momento se nos corrige dentro del initialize	
 		// Enganchamos controladores de búsqueda a los campos del formulario
 		EventSearchController eventSearchController = new EventSearchController(this);

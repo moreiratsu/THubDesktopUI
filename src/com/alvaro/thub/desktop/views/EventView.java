@@ -6,11 +6,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-
 import org.apache.commons.lang3.StringUtils;
-
-import javax.swing.JOptionPane;
 
 import com.alvaro.thub.model.Country;
 import com.alvaro.thub.model.ProvinceDTO;
@@ -35,7 +31,6 @@ import com.alvaro.thub.service.impl.EventServiceImpl;
 import com.alvaro.thub.service.impl.UserServiceImpl;
 import com.alvaro.thub.desktop.controller.AbstractController;
 import com.alvaro.thub.desktop.controller.CancelController;
-import com.alvaro.thub.desktop.controller.Controller;
 import com.alvaro.thub.desktop.controller.CountryCBController;
 import com.alvaro.thub.desktop.controller.EventCreateController;
 import com.alvaro.thub.desktop.controller.ProvinceCBController;
@@ -46,19 +41,12 @@ import com.alvaro.thub.desktop.views.renderer.FormatCBRenderer;
 import com.alvaro.thub.desktop.views.renderer.StatusCBRenderer;
 
 import java.awt.Insets;
-import java.awt.Window;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
 
 /**

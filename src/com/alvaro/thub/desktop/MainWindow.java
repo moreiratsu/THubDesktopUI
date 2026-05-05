@@ -28,6 +28,7 @@ import javax.swing.UIManager;
 import org.jdesktop.swingx.JXTitledPanel;
 
 import com.alvaro.thub.desktop.controller.OpenUserMenuController;
+import com.alvaro.thub.desktop.controller.TeamView;
 import com.alvaro.thub.desktop.controller.OpenEventMenuController;
 import com.alvaro.thub.desktop.controller.OpenEventSearchViewController;
 import com.alvaro.thub.desktop.controller.OpenHomeViewController;
@@ -40,7 +41,6 @@ import com.alvaro.thub.desktop.views.HomeView;
 import com.alvaro.thub.desktop.views.ParticipantsByAgeChartView;
 import com.alvaro.thub.desktop.views.PlayerView;
 import com.alvaro.thub.desktop.views.PlayerSearchView;
-import com.alvaro.thub.desktop.views.TeamView;
 import com.alvaro.thub.desktop.views.TeamSearchView;
 import com.alvaro.thub.desktop.views.UserView;
 import com.alvaro.thub.desktop.views.View;

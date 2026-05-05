@@ -1,5 +1,6 @@
 package com.alvaro.thub.desktop.views.tableModel;
 
+import java.awt.Container;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,4 +56,6 @@ public class UserTableModel extends AbstractTableModel {
 		this.usuarios = usuarios;
 		fireTableDataChanged(); // Notificar a la tabla que los datos han cambiado
 	}
+
+	
 }

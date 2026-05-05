@@ -1,7 +1,11 @@
 package com.alvaro.thub.desktop.views.renderer;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
@@ -9,6 +13,16 @@ import javax.swing.table.TableCellRenderer;
 import com.alvaro.thub.model.UserDTO;
 
 public class UserTableRenderer implements TableCellRenderer{
+
+	private static final DateFormat FECHA_DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
+
+	private static final Color HOVER_COLOR = new Color(230, 240, 255); // Elegimos aqui el color
+
+	private int hoverRow = -1; // Fila sobre la que está el ratón
+
+	public void setHoverRow(int row) {
+		this.hoverRow = row;
+	}
 
 	public UserTableRenderer() {
 	}
@@ -61,6 +75,18 @@ public class UserTableRenderer implements TableCellRenderer{
 				c = new JLabel("Próximamente...");
 			}
 
+			// Aplicar colores según está SELECCIONADA UNA FILA o HOVER (SOBRE ELLA EL RATÓN)
+			((JComponent) c).setOpaque(true); // Necesario para que el fondo se pinte correctamente, c en este casio es un JLabel, que es un JComponent, no un Component
+			if (isSelected) {
+				c.setBackground(table.getSelectionBackground());
+				c.setForeground(table.getSelectionForeground());
+			} else if (row == hoverRow) {
+				c.setBackground(HOVER_COLOR);
+				c.setForeground(table.getForeground());
+			} else {
+				c.setBackground(table.getBackground());
+				c.setForeground(table.getForeground());
+			}
 		}
 		return c;
 

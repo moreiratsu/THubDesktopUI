@@ -68,10 +68,9 @@ public class EventButtonEditor extends AbstractCellEditor implements TableCellEd
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
 
 }

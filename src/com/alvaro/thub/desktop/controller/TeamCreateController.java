@@ -6,7 +6,6 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import com.alvaro.thub.desktop.views.TeamView;
 import com.alvaro.thub.model.LocalityDTO;
 import com.alvaro.thub.model.Sport;
 import com.alvaro.thub.model.TeamDTO;

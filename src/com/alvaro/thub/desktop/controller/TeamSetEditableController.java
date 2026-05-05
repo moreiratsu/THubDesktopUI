@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
-import com.alvaro.thub.desktop.views.TeamView;
-
 /**
  * Este controlador se encarga de cambiar la vista del equipo a modo editable.
  * 

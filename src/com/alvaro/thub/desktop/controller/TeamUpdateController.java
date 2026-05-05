@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import com.alvaro.thub.desktop.views.TeamView;
 import com.alvaro.thub.model.TeamDTO;
 import com.alvaro.thub.service.TeamService;
 import com.alvaro.thub.service.impl.TeamServiceImpl;

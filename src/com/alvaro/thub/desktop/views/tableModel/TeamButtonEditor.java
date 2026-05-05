@@ -12,9 +12,9 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 
 import com.alvaro.thub.desktop.MainWindow;
-import com.alvaro.thub.desktop.views.TeamView;
 import com.alvaro.thub.model.TeamDTO;
 import com.alvaro.thub.desktop.controller.TeamUpdateController;
+import com.alvaro.thub.desktop.controller.TeamView;
 import com.alvaro.thub.service.TeamService;
 import com.alvaro.thub.service.impl.TeamServiceImpl;
 

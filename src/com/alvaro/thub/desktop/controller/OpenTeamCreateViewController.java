@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import com.alvaro.thub.desktop.MainWindow;
-import com.alvaro.thub.desktop.views.TeamView;
 import com.alvaro.thub.desktop.views.UserView;
 
 /**
